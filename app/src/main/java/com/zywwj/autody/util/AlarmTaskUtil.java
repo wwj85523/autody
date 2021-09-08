@@ -46,7 +46,7 @@ public class AlarmTaskUtil {
         if (System.currentTimeMillis() > calendar.getTimeInMillis()) {
             calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
         }
-
+//dfd
         long triggerAtMillis = calendar.getTimeInMillis();
 
         PendingIntent operation;
