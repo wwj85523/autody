@@ -12,6 +12,7 @@ import android.widget.TimePicker;
 import com.zywwj.autody.service.AccessibilityServiceMonitor;
 import com.zywwj.autody.util.AccessibilitUtil;
 import com.zywwj.autody.util.Config;
+import com.zywwj.autody.util.PackUtil;
 import com.zywwj.autody.util.ShareUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Switch sw_alipay_forest;
     private Switch sw_wechart_motion;
     private Button btnSettings;
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSettings = (Button) findViewById(R.id.btn_settings);
         sw_alipay_forest = (Switch) findViewById(R.id.sw_alipay_forest);
         sw_wechart_motion = (Switch) findViewById(R.id.sw_wechart_motion);
+        button=findViewById(R.id.button);
     }
 
     private void initVaule() {
         mShareUtil = new ShareUtil(this);
-
         timepick.setIs24HourView(true);
         timepick.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
     }
@@ -66,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sw_liangtong.setOnCheckedChangeListener(this);
         sw_alipay_forest.setOnCheckedChangeListener(this);
         sw_wechart_motion.setOnCheckedChangeListener(this);
-
         timepick.setOnTimeChangedListener(this);
+        button.setOnClickListener(this);
     }
 
     @Override
@@ -76,7 +79,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_settings:
                 AccessibilitUtil.showSettingsUI(this);
                 break;
+            case R.id.button:
+                onClickButton(view);
+                break;
         }
+    }
+
+    private void onClickButton(View view){
+        PackUtil.openPackage(this,"com.ss.android.ugc.aweme");
     }
 
     private void updateUI() {
